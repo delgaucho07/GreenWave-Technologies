@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>I nostri valori – GreenWave Technologies</title>
+  <meta name="description" content="I tre pilastri di GreenWave: innovazione, sostenibilità e responsabilità.">
+  <style>
+    :root{
+      --brand-1:#2d5e2d;
+      --brand-2:#13cc13;
+      --bg:#f4f7f4;
+      --text:#1e1e1e;
+    }
+
+    html,body{
+      margin:0;
+      padding:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    header{
+      text-align:center;
+      padding:40px 20px;
+      background:rgb(99 234 99);
+      box-shadow:0 2px 10px rgb(0 0 0 / .1);
+    }
+    header h1{
+      color:var(--brand-1);
+      margin:0;
+      font-size:32px;
+    }
+
+    main{ display:block; }
+
+    #descrizione{
+      font-size:18px;
+      line-height:1.7;
+      color:#0f2a0f;
+      background:linear-gradient(45deg, #9cd59c, #26f326);
+      padding:24px;
+      border-radius:12px;
+      max-width:1000px;
+      margin:24px auto;
+    }
+
+    .tab-valori{
+      width:100%;
+      max-width:1000px;
+      margin:0 auto;
+      border-collapse:separate;
+      border-spacing:0;
+      background:#fff;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 2px 10px rgb(0 0 0 / .06);
+    }
+    .tab-valori th,
+    .tab-valori td{
+      padding:18px;
+      vertical-align:top;
+      text-align:left;
+    }
+    .tab-valori thead th{
+      background:#e9f7eb;
+      color:var(--brand-1);
+      font-size:18px;
+    }
+    .tab-valori tbody td{
+      font-size:16px;
+      line-height:1.6;
+    }
+    .emoji{
+      font-style:normal;
+    }
+
+    .btn-fissa{
+      position:fixed;
+      inset:auto 20px 20px auto;
+      display:inline-block;
+      padding:12px 22px;
+      background:linear-gradient(45deg, var(--brand-1), var(--brand-2));
+      color:#fff;
+      text-decoration:none;
+      border-radius:24px;
+      font-weight:600;
+      box-shadow:0 4px 10px rgb(0 0 0 / .15);
+      transition:filter .2s ease, transform .1s ease;
+    }
+    .btn-fissa:hover,
+    .btn-fissa:focus{ filter:brightness(1.05); }
+    .btn-fissa:active{ transform:translateY(1px); }
+
+    footer{
+      background:var(--brand-1);
+      color:#fff;
+      text-align:center;
+      padding:20px;
+      margin-top:40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Questi sono i nostri valori</h1>
+  </header>
+
+  <main>
+    <p id="descrizione">
+      GreenWave si fonda su tre pilastri essenziali: innovazione, sostenibilità e responsabilità.
+      La nostra missione nasce dalla convinzione che il progresso non debba essere solo tecnologico,
+      ma anche etico e consapevole. Per questo lavoriamo ogni giorno per sviluppare soluzioni che uniscano
+      creatività, rispetto dell’ambiente e attenzione per le comunità. Crediamo profondamente che ogni scelta —
+      anche la più semplice e apparentemente insignificante — possa generare un impatto positivo.
+      Ogni gesto quotidiano, se guidato da valori autentici, contribuisce a migliorare il nostro pianeta
+      e la qualità della vita delle persone. GreenWave si impegna quindi a promuovere un modello di crescita
+      che guardi al futuro con ottimismo, responsabilità e un forte senso di appartenenza alla nostra Terra.
+    </p>
+
+    <figure aria-labelledby="cap-valori">
+      <figcaption id="cap-valori" class="visually-hidden" style="position:absolute;left:-9999px;">
+        Tabella dei tre valori principali di GreenWave
+      </figcaption>
+
+      <table class="tab-valori">
+        <thead>
+          <tr>
+            <th scope="col"><span class="emoji" role="img" aria-label="piantina">🌱</span> Innovazione</th>
+            <th scope="col"><span class="emoji" role="img" aria-label="foglia">🌿</span> Sostenibilità</th>
+            <th scope="col"><span class="emoji" role="img" aria-label="scudo">🛡️</span> Responsabilità</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              La nostra missione nasce dalla convinzione che il progresso non debba essere solo tecnologico,
+              ma anche etico e orientato al miglioramento della vita delle persone.
+            </td>
+            <td>
+              Ogni gesto quotidiano, se guidato da valori autentici, contribuisce a migliorare il nostro pianeta.
+              Crediamo che anche le piccole azioni possano generare un impatto positivo duraturo.
+            </td>
+            <td>
+              Promuoviamo scelte consapevoli e un modello di crescita che guarda al futuro con ottimismo,
+              responsabilità e un forte senso di appartenenza alla nostra Terra.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </figure>
+  </main>
+
+  <a class="btn-fissa" href="index.html">Torna alla Home</a>
+
+  <footer>
+    <small>&copy; 2021 GreenWave Technologies – Startup Green &amp; Tech</small>
+  </footer>
+</body>
+</html>

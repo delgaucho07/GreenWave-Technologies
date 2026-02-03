@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chi siamo – GreenWave Technologies</title>
+  <meta name="description" content="La storia e la missione di GreenWave Technologies: tecnologia in armonia con la natura.">
+  <link rel="preconnect" href="">
+  <style>
+    :root{
+      --brand-1:#2d5e2d;
+      --brand-2:#13cc13;
+      --bg:#f4f7f4;
+      --text:#1e1e1e;
+    }
+
+    html,body{
+      margin:0;
+      padding:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    header{
+      text-align:center;
+      padding:40px 20px;
+      background:rgb(99 234 99);
+      box-shadow:0 2px 10px rgb(0 0 0 / 0.1);
+    }
+    header img{
+      width:160px;
+      height:auto;
+    }
+    header h1{
+      margin:10px 0 0;
+      font-size:32px;
+      font-weight:700;
+    }
+    header p{
+      font-size:18px;
+      color:#4a6f4a;
+      margin-top:5px;
+    }
+
+    main{
+      display:block;
+    }
+
+    .sezione{
+      padding:60px 20px;
+      max-width:1000px;
+      margin-inline:auto;
+    }
+
+    #azienda{
+      display:block;
+      margin:20px auto;
+      max-width:45%;
+      height:auto;
+      padding:10px;
+    }
+
+    .evi{
+      font-size:18px;
+      line-height:1.7;
+      color:#fff;
+      background:linear-gradient(45deg, var(--brand-1), var(--brand-2));
+      padding:24px;
+      border-radius:12px;
+      max-width:1000px;
+      margin:32px auto;
+    }
+
+    .btn-fissa{
+      position:fixed;
+      inset:auto 20px 20px auto; /* bottom-right */
+      display:inline-block;
+      padding:12px 22px;
+      background:linear-gradient(45deg, var(--brand-1), var(--brand-2));
+      color:#fff;
+      text-decoration:none;
+      border-radius:24px;
+      font-weight:600;
+      box-shadow:0 4px 10px rgb(0 0 0 / .15);
+      transition:filter .2s ease, transform .1s ease;
+    }
+    .btn-fissa:focus,
+    .btn-fissa:hover{ filter:brightness(1.05); }
+    .btn-fissa:active{ transform:translateY(1px); }
+
+    footer{
+      background:var(--brand-1);
+      color:#fff;
+      text-align:center;
+      padding:20px;
+      margin-top:40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="../img/logo_greenwave.png" alt="Logo GreenWave">
+    <h1>GreenWave Technologies</h1>
+    <h2 aria-label="La nostra Storia">La nostra Storia</h2>
+    <p>Technology in harmony with nature</p>
+  </header>
+
+  <main>
+    <section class="sezione" aria-labelledby="tit-chi-siamo">
+      <h2 id="tit-chi-siamo">Chi siamo</h2>
+      <img id="azienda" src="../img/Designer (5).png" alt="Sede di GreenWave Technologies">
+    </section>
+
+    <section class="sezione" aria-labelledby="tit-storia">
+      <h2 id="tit-storia" class="visually-hidden" style="position:absolute;left:-9999px;">La nostra storia in breve</h2>
+      <div class="evi">
+        <p>
+          GreenWave Technologies nasce ufficialmente nel 2021, da un gruppo di giovani professionisti accomunati
+          dalla volontà di creare un ponte tra innovazione tecnologica e sostenibilità ambientale. Fin dall’inizio,
+          il nostro obiettivo è stato quello di sviluppare soluzioni capaci di migliorare la vita quotidiana senza
+          compromettere l’equilibrio del pianeta.
+        </p>
+        <p>
+          Nel corso del 2022, il team ha iniziato a consolidarsi e ad ampliare le proprie competenze, accogliendo
+          ingegneri, designer e ricercatori accomunati dalla stessa visione: immaginare un futuro in cui la tecnologia
+          non sia solo un mezzo, ma un vero e proprio motore di cambiamento responsabile. Questo periodo è stato
+          fondamentale per definire la nostra identità aziendale e porre le basi dei progetti che oggi stiamo portando avanti.
+        </p>
+        <p>
+          A partire dal 2023, GreenWave Technologies ha intensificato le attività di ricerca e sviluppo, concentrandosi su
+          soluzioni che unissero efficienza energetica, riduzione degli sprechi e utilizzo intelligente delle risorse naturali.
+          Il nostro impegno ci ha permesso di collaborare con realtà accademiche e imprenditoriali, rafforzando il nostro
+          ruolo all’interno dell’ecosistema dell’innovazione sostenibile.
+        </p>
+        <p>
+          Oggi, nel 2026, continuiamo a credere in un domani in cui la tecnologia possa essere potente e, allo stesso tempo,
+          rispettosa dell’ambiente. Lavoriamo ogni giorno con passione e responsabilità per trasformare questa visione in
+          realtà, proponendo soluzioni che parlano non solo di progresso, ma anche di consapevolezza e cura per il mondo
+          che ci circonda.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <a class="btn-fissa" href="index.html">Torna alla Home</a>
+
+  <footer>
+    <small>&copy; 2021  GreenWave Technologies – Startup Green &amp; Tech</small>
+  </footer>
+</body>
+</html>
+```
