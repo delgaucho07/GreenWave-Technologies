@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidatura- GreenWave Technologies</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7f4;
+            color: #1e1e1e;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgb(99, 234, 99);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            width: 160px;
+        }
+
+        header h1 {
+            margin: 10px 0 0;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #4a6f4a;
+            margin-top: 5px;
+        }
+
+        .cointainer {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .cointainer h2 {
+            color: #2d5e2d;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2d5e2d;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #63ea63;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: Arial, Helvetica sans-serif;
+            box-sizing: border-box;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #2d5e2d;
+            outline: none;
+            background-color: #f0f5f0;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 12px 20px;
+            background: linear-gradient(45deg, #2d5e2d, #13cc13);
+            color: white;
+            border: none;
+
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn-fissa{
+      position:fixed;
+      inset:auto 20px 20px auto; 
+      display:inline-block;
+      padding:12px 22px;
+      background:linear-gradient(45deg ,#2d5e2d,#13cc13);
+      color:#fff ;
+      text-decoration:none;
+      border-radius:24px;
+      font-weight:600;
+      box-shadow:0 4px 10px rgb(0 0 0 / .15);
+      transition:filter .2s ease, transform .1s ease;
+    }
+    .btn-fissa:focus,
+    .btn-fissa:hover{ filter:brightness(1.05); }
+    .btn-fissa:active{ transform:translateY(1px); }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="../img/logo_greenwave.png" alt="GreenWave Technologies Logo">
+        <h1>GreenWave Technologies</h1>
+        <p>Technology in harmony with nature</p>
+    </header>
+    <div class="cointainer">
+        <h2>Candidatura per una posizione in GreenWave Technologies</h2>
+        <form action="processa_candidatura.php" method="post">
+            <div class="form-group">
+                <label for="nome">Nome e Cognome:</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Telefono:</label>
+                <input type="tel" id="telefono" name="telefono" required>
+            </div>
+
+            <div class="form-group">
+                <label for="posizione">Posizione desiderata *</label>
+                <select id="posizione" name="posizione" required>
+                    <option value="">-- Seleziona una posizione --</option>
+                    <option value="sviluppatore">Sviluppatore</option>
+                    <option value="designer">Designer</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="vendite">Vendite</option>
+                    <option value="hr">Risorse Umane</option>
+                    <option value="altro">Altro</option>
+                </select>
+                <div class="form-group">
+                    <label for="esperienza">Esperienza professionale *</label>
+                    <textarea id="esperienza" name="esperienza" required
+                        placeholder="Descrivi la tua esperienza professionale..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="competenze">Competenze principali *</label>
+                    <textarea id="competenze" name="competenze" required
+                        placeholder="Elenca le tue competenze principali..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="motivazione">Perché vuoi unirti a GreenWave? *</label>
+                    <textarea id="motivazione" name="motivazione" required
+                        placeholder="Raccontaci perché sei interessato a GreenWave Technologies..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="cv">Carica il tuo CV (PDF) *</label>
+                    <input type="file" id="cv" name="cv" accept=".pdf" required>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit">Invia Candidatura</button>
+                </div>
+        </form>
+
+        <a class="btn-fissa" href="index.html">Torna alla Home</a>
+    </div>
+
+    <div class="contact">
+        © 2021 GreenWave Technologies – Startup Green & Tech
+    </div>
+
+</body>
+
+</html>
