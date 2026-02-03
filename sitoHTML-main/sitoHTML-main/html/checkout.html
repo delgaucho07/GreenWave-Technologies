@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Completa acquisto - GreenWave</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7f4;
+            color: #1e1e1e;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgb(99, 234, 99);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        header p {
+            font-size: 18px;
+            color: #4a6f4a;
+            margin-top: 5px;
+        }
+
+        header img {
+            width: 140px
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: #2d5e2d;
+            margin-top: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary {
+            margin-top: 10px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 6px;
+            color: #2d5e2d;
+            font-weight: 600;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #63ea63;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .two-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        #tornaHome {
+            padding: 12px 25px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #2d5e2d, #13cc13);
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-family: Verdana, sans-serif;
+            transition: 0.3s;
+            z-index: 100;
+        }
+
+        #tornaHome:hover {
+            opacity: 0.8;
+        }
+
+        #completacquisto {
+            padding: 12px 25px;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #2d5e2d, #13cc13);
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-family: Verdana, sans-serif;
+            transition: 0.3s;
+            z-index: 100;
+        }
+
+        #completacquisto:hover {
+            opacity: 0.8;
+        }
+
+        .contact {
+            background: #2d5e2d;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            margin-top: 20px;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .note {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 6px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <img src="../img/logo_greenwave.png" alt="GreenWave">
+        <h1>GreenWave Technologies</h1>
+        <p>Completa il tuo acquisto</p>
+    </header>
+
+    <div class="container">
+        <h2>Riepilogo carrello</h2>
+        <div id="carrelloContainer"></div>
+        <div class="summary">
+            <div>Totale (escl. tasse)</div>
+            <div id="subtotal">0.00$</div>
+        </div>
+
+
+        <!--  sostituire con dinamica lato client/server  -->
+        <script>
+    function caricaCarrello() {
+        let carrello = JSON.parse(localStorage.getItem('carrello')) || [];
+        let container = document.getElementById('carrelloContainer');
+        let subtotal = 0;
+
+        if (carrello.length === 0) {
+            container.innerHTML = '<div class="carrello-vuoto">Il tuo carrello è vuoto. <a href="prodotti.html">Aggiungi prodotti</a></div>';
+            document.getElementById('subtotal').textContent = '0.00$';
+            return;
+        }
+        
+
+        container.innerHTML = '';
+        carrello.forEach((item, index) => {
+            let prezzo = parseFloat(item.prezzo);
+            if (isNaN(prezzo)) prezzo = 0;
+
+            let totaleItem = prezzo * item.qty;
+
+            let itemDiv = document.createElement('div');
+            itemDiv.className = 'cart-item';
+            itemDiv.innerHTML = `
+                <div>
+                    ${item.nome}&nbsp;
+                    <button type="button" onclick="aggiornaQuantita(${index}, -1)">-</button>
+                    ${item.qty}
+                    <button type="button" onclick="aggiornaQuantita(${index}, 1)">+</button>
+                </div>
+                <div>
+                    <span>${totaleItem.toFixed(2)}$</span>
+                    <button type="button" onclick="rimuoviProdotto(${index})">Rimuovi</button>
+                </div>
+            `;
+            container.appendChild(itemDiv);
+
+            subtotal += totaleItem;
+        });
+
+        document.getElementById('subtotal').textContent = subtotal.toFixed(2) + '$';
+    }
+
+    function aggiornaQuantita(index, delta) {
+        let carrello = JSON.parse(localStorage.getItem('carrello')) || [];
+        if (!carrello[index]) return;
+
+        carrello[index].qty += delta;
+
+        if (carrello[index].qty <= 0) {
+            carrello.splice(index, 1);
+        }
+
+        localStorage.setItem('carrello', JSON.stringify(carrello));
+        caricaCarrello();
+    }
+
+    function rimuoviProdotto(index) {
+        let carrello = JSON.parse(localStorage.getItem('carrello')) || [];
+        carrello.splice(index, 1);
+        localStorage.setItem('carrello', JSON.stringify(carrello));
+        caricaCarrello();
+    }
+
+    caricaCarrello();
+</script>
+<script>
+    document.querySelector('form').addEventListener('submit'), function(e) {
+        e.preventDefault();}
+
+        let prefisso = document.getElementById('prefisso').value;
+        let telefono = document.getElementById('telefono').value;
+        
+        if (prefisso && telefono) {
+            telefono = prefisso + telefono;
+        }
+document.getElementById('completacquisto').addEventListener('click', function () {
+  // Leggi form
+  const prefisso = document.getElementById('prefisso') ? document.getElementById('prefisso').value : '';
+  let telefono = document.getElementById('telefono') ? document.getElementById('telefono').value : '';
+  if (prefisso && telefono) telefono = prefisso + telefono;
+
+  const ordine = {
+    nome: document.getElementById('nome')?.value || '',
+    email: document.getElementById('email')?.value || '',
+    telefono: telefono,
+    indirizzo: document.getElementById('indirizzo')?.value || '',
+    citta: document.getElementById('citta')?.value || '',
+    cap: document.getElementById('cap')?.value || '',
+    metodo: document.getElementById('metodo')?.value || '',
+    note: document.getElementById('note')?.value || ''
+  };
+
+  // Leggi carrello da localStorage (fallback a [] se vuoto)
+  let carrello = JSON.parse(localStorage.getItem('carrello')) || [];
+
+  // Normalizza qty e prezzo
+  carrello = carrello.map(item => ({
+    nome: item.nome,
+    prezzo: parseFloat(item.prezzo) || 0,
+    qty: parseInt(item.qty, 10) || 1
+  }));
+
+  // Salva in sessionStorage per fineacquisti.html
+  sessionStorage.setItem('ordineCompletato', JSON.stringify(ordine));
+  sessionStorage.setItem('carrelloOrdine', JSON.stringify(carrello));
+
+  // Svuota carrello (opzionale)
+  localStorage.removeItem('carrello');
+
+  // Vai a pagina di riepilogo
+  window.location.href = 'fineacquisti.html';
+});
+</script>
+
+        <h2 style="margin-top:20px">Dati di fatturazione e spedizione</h2>
+        <form method="POST" action="process_order.php" enctype="multipart/form-data">
+            <div class="two-cols">
+                <div>
+                    <label for="nome">Nome e Cognome *</label>
+                    <input id="nome" name="nome" type="text" required>
+                </div>
+                <div>
+                    <label for="email">Email *</label>
+                    <input id="email" name="email" type="email" required>
+                </div>
+            </div>
+
+            <label for="indirizzo">Indirizzo di spedizione *</label>
+            <input id="indirizzo" name="indirizzo" type="text" required>
+
+            <div class="two-cols">
+                <div>
+                    <label for="citta">Città *</label>
+                    <input id="citta" name="citta" type="text" required>
+                </div>
+                <div>
+                    <label for="cap">CAP *</label>
+                    <input id="cap" name="cap" type="text" required>
+                </div>
+            </div>
+
+            <div class="two-cols">
+    <div>
+        <label for="prefisso">Prefisso internazionale *</label>
+        <select id="prefisso" name="prefisso" required>
+            <option value="">-- Seleziona prefisso --</option>
+            <option value="+1">🇺🇸 +1 (USA, Canada)</option>
+            <option value="+44">🇬🇧 +44 (Regno Unito)</option>
+            <option value="+39">🇮🇹 +39 (Italia)</option>
+            <option value="+33">🇫🇷 +33 (Francia)</option>
+            <option value="+49">🇩🇪 +49 (Germania)</option>
+            <option value="+34">🇪🇸 +34 (Spagna)</option>
+            <option value="+31">🇳🇱 +31 (Paesi Bassi)</option>
+            <option value="+41">🇨🇭 +41 (Svizzera)</option>
+            <option value="+43">🇦🇹 +43 (Austria)</option>
+            <option value="+45">🇩🇰 +45 (Danimarca)</option>
+            <option value="+46">🇸🇪 +46 (Svezia)</option>
+            <option value="+47">🇳🇴 +47 (Norvegia)</option>
+            <option value="+48">🇵🇱 +48 (Polonia)</option>
+            <option value="+61">🇦🇺 +61 (Australia)</option>
+            <option value="+81">🇯🇵 +81 (Giappone)</option>
+            <option value="+86">🇨🇳 +86 (Cina)</option>
+            <option value="+91">🇮🇳 +91 (India)</option>
+            <option value="+55">🇧🇷 +55 (Brasile)</option>
+            <option value="+27">🇿🇦 +27 (Sud Africa)</option>
+            <option value="+20">🇪🇬 +20 (Egitto)</option>
+            <option value="+966">🇸🇦 +966 (Arabia Saudita)</option>
+            <option value="+971">🇦🇪 +971 (Emirati Arabi)</option>
+            <option value="+65">🇸🇬 +65 (Singapore)</option>
+            <option value="+852">🇭🇰 +852 (Hong Kong)</option>
+            <option value="+82">🇰🇷 +82 (Corea del Sud)</option>
+            <option value="+66">🇹🇭 +66 (Tailandia)</option>
+            <option value="+60">🇲🇾 +60 (Malesia)</option>
+            <option value="+63">🇵🇭 +63 (Filippine)</option>
+            <option value="+64">🇳🇿 +64 (Nuova Zelanda)</option>
+            <option value="+54">🇦🇷 +54 (Argentina)</option>
+            <option value="+56">🇨🇱 +56 (Cile)</option>
+            <option value="+57">🇨🇴 +57 (Colombia)</option>
+            <option value="+52">🇲🇽 +52 (Messico)</option>
+            <option value="+1-876">🇯🇲 +1-876 (Giamaica)</option>
+            <option value="+36">🇭🇺 +36 (Ungheria)</option>
+            <option value="+40">🇷🇴 +40 (Romania)</option>
+            <option value="+30">🇬🇷 +30 (Grecia)</option>
+            <option value="+358">🇫🇮 +358 (Finlandia)</option>
+            <option value="+47">🇸🇯 +47 (Svalbard)</option>
+            <option value="+234">🇳🇬 +234 (Nigeria)</option>
+            <option value="+255">🇹🇿 +255 (Tanzania)</option>
+            <option value="+212">🇲🇦 +212 (Marocco)</option>
+        </select>
+    </div>
+    <div>
+        <label for="telefono">Numero di telefono *</label>
+        <input id="telefono" name="telefono" type="tel" required placeholder="es. 3201234567">
+    </div>
+   
+</div>
+            <h2 style="margin-top:20px">Pagamento</h2>
+
+            <label for="metodo">Metodo di pagamento *</label>
+            <select id="metodo" name="metodo" required>
+                <option value="">-- Seleziona --</option>
+                <option value="card">Carta di credito</option>
+                <option value="paypal">PayPal</option>
+                <option value="cod">Contrassegno</option>
+            </select>
+
+            <div id="cardFields" style="margin-top:10px;">
+                <label for="ccname">Nome su carta</label>
+                <input id="ccname" name="ccname" type="text">
+                <label for="ccnumber">Numero carta</label>
+                <input id="ccnumber" name="ccnumber" type="text" inputmode="numeric" pattern="[0-9\s]{13,19}">
+                <div class="two-cols">
+                    <div>
+                        <label for="exp">Scadenza (MM/AA)</label>
+                        <input id="exp" name="exp" type="text" placeholder="MM/AA">
+                    </div>
+                    <div>
+                        <label for="cvc">CVC</label>
+                        <input id="cvc" name="cvc" type="text" inputmode="numeric" maxlength="4">
+                    </div>
+                </div>
+            </div>
+
+            <label for="note">Note ordine</label>
+            <textarea id="note" name="note" rows="4" placeholder="Istruzioni per la consegna..."></textarea>
+
+            <div style="margin-top:12px;">
+                <input id="terms" name="terms" type="checkbox" required> <label for="terms"
+                    style="display:inline;font-weight:normal">Accetto termini e condizioni</label>
+            </div>
+
+            <div style="margin-top:16px;">
+              <button id="completacquisto" type="button">Paga e completa ordine</button>
+            </div>
+        </form>
+
+
+        <p class="note">Nota: questo è un modulo d'esempio.</p>
+    </div>
+
+    <button id="tornaHome" onclick="window.location.href='index.html'">Torna alla home</button>
+
+    <div class="contact">
+        © 2021 GreenWave Technologies – Startup Green & Tech
+    </div>
+</body>
+
+</html>

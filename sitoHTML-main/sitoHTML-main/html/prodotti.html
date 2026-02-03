@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenWave Technologies - Prodotti</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f7f4;
+        color: #1e1e1e;
+    }
+
+    header {
+        text-align: center;
+        padding: 40px 20px;
+        background: rgb(99, 234, 99);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header img {
+        width: 160px;
+    }
+
+    header h1 {
+        margin: 10px 0 0;
+        font-size: 32px;
+        font-weight: bold;
+    }
+
+    header h2 {
+        margin: 10px 0 0;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    header p {
+        font-size: 18px;
+        color: #4a6f4a;
+        margin-top: 5px;
+    }
+
+    .prodotto {
+        padding: 60px 20px;
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    .prodotto h2 {
+        color: #2d5e2d;
+        margin-bottom: 10px;
+        font-size: 28px;
+    }
+
+    #descrizione {
+        font-size: 18px;
+        line-height: 1.6;
+        background: linear-gradient(45deg, #9cd59c, #26f326);
+    }
+
+    .contact {
+        background: #2d5e2d;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: 40px;
+    }
+
+    .prezzoProdotto {
+        font-weight: bold;
+        font-size: 20px;
+        color: #13cc13;
+    }
+
+    #tornaHome {
+        padding: 12px 25px;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(45deg, #2d5e2d, #13cc13);
+        color: white;
+        border-radius: 25px;
+        text-decoration: none;
+        font-family: Verdana, sans-serif;
+        transition: 0.3s;
+        font-size: small;
+    }
+
+    #tornaHome:hover {
+        opacity: 0.8;
+    }
+
+    #btnprezzo {
+        padding: 12px 25px;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(45deg, #2d5e2d, #13cc13);
+        color: white;
+        border-radius: 25px;
+        text-decoration: none;
+        font-family: Verdana, sans-serif;
+        transition: 0.3s;
+    }
+
+    #btnprezzo :hover {
+        opacity: 0.8;
+    }
+</style>
+
+<script>
+function aggiungiAlCarrello(nome, prezzo, qty) {
+  qty = parseInt(qty, 10);
+  if (isNaN(qty) || qty < 1) qty = 1;
+  let carrello = JSON.parse(localStorage.getItem('carrello')) || [];
+  let es = carrello.find(i => i.nome === nome);
+  if (es) es.qty = (parseInt(es.qty,10) || 0) + qty;
+  else carrello.push({ nome: nome, prezzo: prezzo, qty: qty });
+  localStorage.setItem('carrello', JSON.stringify(carrello));
+  window.location.href = 'checkout.html';
+}
+</script>
+
+<body>
+    <header>
+        <img src="../img/logo_greenwave.png" alt="">
+        <h1>GreenWave Technologies</h1>
+        <h2>Vetrina prodotti</h2>
+        <p>Technology in harmony with nature</p>
+    </header>
+
+    <section class="prodotto">
+        <h2>🖥️ 1. Tablet ultracompatto</h2>
+        <p id="descrizione">
+            Il dispositivo presenta una cornice nera uniforme, caratterizzata da linee pulite e da bordi leggermente
+            arrotondati che conferiscono un aspetto moderno e armonioso. Questa scelta estetica non solo valorizza il
+            design complessivo, ma migliora anche la sensazione al tatto, rendendo più confortevole l’impugnatura e
+            l’utilizzo quotidiano.
+            Il display edge‑to‑edge è progettato per offrire un’esperienza visiva immersiva, massimizzando lo spazio
+            disponibile e riducendo al minimo le cornici visibili. L’ottimizzazione del rapporto schermo/corpo permette
+            di ottenere un pannello più ampio in un ingombro ridotto, favorendo un utilizzo più naturale sia per la
+            fruizione di contenuti multimediali sia per le attività professionali.
+            Il corpo sottile e compatto è stato studiato con attenzione per garantire la massima portabilità, senza
+            compromettere solidità e resistenza. Le sue dimensioni contenute lo rendono facile da trasportare in borse,
+            zaini o custodie, risultando ideale per chi è sempre in movimento e necessita di un dispositivo leggero,
+            elegante e allo stesso tempo funzionale
+        </p>
+        <button class="btnprezzo" onclick="aggiungiAlCarrello('Tablet ultracompatto', 450.00,1)">
+            <p class="prezzoProdotto">450.00$</p>
+        </button>
+    </section>
+
+    <section class="prodotto">
+        <h2>📱 2. Smartphone eco-friendly</h2>
+        <p id="descrizione">
+            Realizzato interamente con **materiali riciclati** di alta qualità, questo prodotto nasce da un processo
+            produttivo studiato per avere un **impatto ambientale minimo**. Ogni fase, dalla selezione delle materie
+            prime alla lavorazione finale, è pensata per ridurre gli sprechi e ottimizzare il consumo di energia,
+            garantendo così un approccio realmente sostenibile.
+
+            Il suo **design minimalista**, pulito ed essenziale, unisce eleganza e funzionalità, rendendolo adatto a
+            qualsiasi ambiente o stile. È disponibile in **diverse colorazioni ecologiche**, ottenute con pigmenti
+            naturali e trattamenti rispettosi dell’ambiente, che mantengono la vivacità nel tempo senza compromettere la
+            sostenibilità del prodotto.
+
+            Progettato per essere **resistente e durevole**, offre un equilibrio ideale tra estetica e responsabilità
+            ambientale. Ogni dettaglio è stato curato pensando alla sua lunga durata nel tempo, affinché possa
+            accompagnare chi lo utilizza per anni, riducendo la necessità di continue sostituzioni e contribuendo così a
+            un modello di consumo più consapevole.
+
+        </p>
+        <button class="btnprezzo" onclick="aggiungiAlCarrello('Smartphone eco-friendly', 224.99,1)">
+            <p class="prezzoProdotto">224.99$</p>
+        </button>
+    </section>
+
+    <section class="prodotto">
+        <h2>🔋 3. Borsa elettrica ricaricabile</h2>
+        <p id="descrizione">
+            Questa borsa elettrica ricaricabile è stata progettata per offrire una soluzione di trasporto pratica e
+            sostenibile. Realizzata con materiali riciclati di alta qualità, combina funzionalità e rispetto per
+            l’ambiente, rendendola ideale per chi desidera un accessorio versatile e responsabile.
+
+            Dotata di una batteria integrata, la borsa consente di ricaricare dispositivi elettronici come smartphone,
+            tablet e laptop durante gli spostamenti. La batteria è facilmente ricaricabile tramite una porta USB
+            situata all’interno della borsa, garantendo comodità e accessibilità in ogni momento della giornata.
+
+            Il design ergonomico e moderno della borsa offre ampio spazio per riporre oggetti personali, documenti e
+            dispositivi elettronici, mantenendoli organizzati e protetti. Le cinghie regolabili assicurano un comfort
+            ottimale durante l’utilizzo, rendendola perfetta per l’uso quotidiano, il lavoro o i viaggi.
+
+        </p>
+        <button class="btnprezzo" onclick="aggiungiAlCarrello('Borsa elettrica ricaricabile', 70.99,1)">
+            <p class="prezzoProdotto">70.99$</p>
+        </button>
+    </section>
+    <button id="tornaHome" onclick="window.location.href='confronta.html'">Vuoi confrontare i prodotti?</button>
+
+    <div class="contact">
+        © 2021 GreenWave Technologies – Startup Green & Tech
+    </div>
+</body>
+
+</html>
